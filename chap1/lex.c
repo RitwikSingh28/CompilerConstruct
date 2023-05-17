@@ -61,6 +61,17 @@ lex() {
     }
 }
 
-int main() {
-    lex();
+static int Lookahead = -1;
+
+int match(int token) {
+    if(Lookahead == -1) {
+        Lookahead = lex();
+    }
+
+    return token == Lookahead;
+}
+
+void advance() {
+    //Advance the lookahead to the next input symbol
+    Lookahead = lex();
 }
